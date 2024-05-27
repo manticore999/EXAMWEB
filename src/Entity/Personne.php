@@ -2,13 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\PersonneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Personne
- *
- * @ORM\Table(name="personne", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=PersonneRepository::class)
  */
 class Personne
 {

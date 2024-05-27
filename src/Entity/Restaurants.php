@@ -1,15 +1,11 @@
 <?php
-
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
+use App\Repository\RestaurantsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Restaurants
- *
- * @ORM\Table(name="restaurants")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=RestaurantsRepository::class)
  */
 class Restaurants
 {
