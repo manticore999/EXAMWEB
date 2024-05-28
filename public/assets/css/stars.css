@@ -1,0 +1,13 @@
+
+.star {
+    font-size: 2rem;
+    color: #ddd; 
+    cursor: pointer;
+    transition: color 0.2s ease; 
+  }
+  
+  .star:hover,
+  .star.selected {
+    color: #FFA500;
+  }
+  
