@@ -1,20 +1,22 @@
-{# templates/login/index.html.twig #}
+{# templates/login/signup.html.twig #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Signup</title>
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
-
 </head>
 <body>
 <div class="container">
-    <h2>Login</h2>
+    <h2>Signup</h2>
     {% for message in app.flashes('danger') %}
         <div class="alert alert-danger">{{ message }}</div>
     {% endfor %}
-    <form action="{{ path('login') }}" method="post">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    <form action="{{ path('signup') }}" method="post">
         <div class="field">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
@@ -27,16 +29,15 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <div class="content">
-            <div class="pass-link">
-                <a href="#">Forgot password?</a>
-            </div>
+        <div class="field">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
         </div>
         <div class="field">
-            <input type="submit" value="Login">
+            <input type="submit" value="Signup">
         </div>
-        <div class="signup-link">
-            Not a member? <a href="{{ path('signup') }}">Signup now</a>
+        <div class="login-link">
+            Already a member? <a href="{{ path('login') }}">Login here</a>
         </div>
     </form>
 </div>
