@@ -1,19 +1,76 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %}Restaurants Review{% endblock %}</title>
+</head>
+<body>
+<header>
+    <div class="navbar">
+        <div class="logo"><a href="{{ path('homepage') }}">Restaurants Review</a></div>
+        <ul class="links">
+            <li><a href="{{ path('homepage') }}" class="active">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="{{ path('restaurants') }}">Restaurants</a></li>
+        </ul>
+        <div class="action_btns">
+            <a href="{{ path('signup') }}" class="action_btn">Sign up</a>
+            <a href="{{ path('login') }}" class="action_btn">Sign in</a>
+        </div>
+        <div class="toggle_btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+</header>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<main>
+    {% block body %}{% endblock %}
+</main>
+
+<footer class="footer-distributed">
+    <div class="footer-left">
+        <h3>Restaurants<span>Review</span></h3>
+        <p class="footer-links">
+            <a href="#" class="link-1">Home</a>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Faq</a>
+            <a href="#">Contact</a>
+        </p>
+        <p class="footer-company-name"> © {{ "now"|date("Y") }} All rights preserved</p>
+    </div>
+
+    <div class="footer-center">
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>Centre Urbain Nord</span> INSAT</p>
+        </div>
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+216 12345678</p>
+        </div>
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@company.com">support@company.com</a></p>
+        </div>
+    </div>
+
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <span>Restaurants Review</span>
+            Welcome to our restaurant review platform! Login to rate and review your favorite restaurants in town. Join our community and share your dining experiences today!
+        </p>
+        <div class="footer-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+        </div>
+    </div>
+</footer>
+</body>
 </html>
