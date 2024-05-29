@@ -1,6 +1,5 @@
 <?php
 
-// src/Entity/Personne.php
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -34,6 +33,16 @@ class Personne implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resetTokenHash;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $resetTokenExpiresAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,7 +56,6 @@ class Personne implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
         return $this;
     }
 
@@ -59,7 +67,6 @@ class Personne implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -71,11 +78,13 @@ class Personne implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
-    public function getRoles()
+    /**
+     * @return array
+     */
+    public function getRoles(): array
     {
         return ['ROLE_USER'];
     }
@@ -90,5 +99,33 @@ class Personne implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-}
 
+    public function getResetTokenHash(): ?string
+    {
+        return $this->resetTokenHash;
+    }
+
+    public function setResetTokenHash(?string $resetTokenHash): self
+    {
+        $this->resetTokenHash = $resetTokenHash;
+        return $this;
+    }
+
+    public function getResetTokenExpiresAt(): ?\DateTimeInterface
+    {
+        return $this->resetTokenExpiresAt;
+    }
+
+    public function setResetTokenExpiresAt(?\DateTimeInterface $resetTokenExpiresAt): self
+    {
+        $this->resetTokenExpiresAt = $resetTokenExpiresAt;
+        return $this;
+    }
+    /**
+     * @return string
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->username;
+    }
+}
