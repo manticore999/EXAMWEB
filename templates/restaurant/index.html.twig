@@ -1,0 +1,47 @@
+{# templates/restaurant_detail.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ restaurant.name }} Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/stars.css') }}">
+</head>
+<body class="container">
+<h1 class="text-center my-4">{{ restaurant.name }}</h1>
+<p class="text-center">{{ restaurant.description }}</p>
+<div class="view-on-map">
+    <a href="{{ restaurant.location }}" target="_blank" class="btn btn-primary">View on Google Maps</a>
+</div>
+<div class="text-center">
+    <img src="{{ restaurant.image_url }}" alt="Image of {{ restaurant.name }}" class="img-fluid">
+</div>
+
+<h2 class="text-center my-4">Reviews</h2>
+{% for review in reviews %}
+    <div class="review border p-3 my-2">
+        <p>{{ review.content }}</p>
+        <p>Rating: {{ review.rating }}/5</p>
+    </div>
+{% endfor %}
+
+{% if app.user %}
+    <form action="{{ path('submit_review') }}" method="post" class="p-5">
+        <div class="form-group">
+            <textarea name="review_content" required placeholder="Your review" class="form-control"></textarea>
+        </div>
+        <div id="stars" class="mb-3">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
+        </div>
+        <input type="hidden" id="rating" name="rating">
+        <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}">
+        <input type="submit" value="Submit Review" class="btn btn-primary">
+    </form>
+{% endif %}
+<script src="{{ asset('js/stars.js') }}"></script>
+</body>
+</html>

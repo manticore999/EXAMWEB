@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Welcome, {{ app.session.get('username') }}!</h1>
+        <a href="{{ path('logout') }}">Logout</a>
+    </header>
+
+    <main>
+        <section>
+            <h2>Your Reviews</h2>
+            {% if reviews is not empty %}
+                <ul>
+                    {% for review in reviews %}
+                        <li>{{ review.content|e }}</li>
+                    {% endfor %}
+                </ul>
+                {% if reviews|length > 4 %}
+                    <p>Congratulations! You have completed more than 5 reviews. you have a great taste</p>
+                    <button onclick="window.location.href='{{ path('generate_pdf') }}'" style="font-family: 'Arial', sans-serif; background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Here is your reward</button>
+                {% endif %}
+            {% else %}
+                <p>No reviews available.</p>
+            {% endif %}
+        </section>
+    </main>
+{% endblock %}
